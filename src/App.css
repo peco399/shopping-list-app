@@ -1,0 +1,2013 @@
+/* ===========================================
+  全体のcss
+   =========================================== */
+/* Google Fonts - 手書き風フォント */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&display=swap');
+
+/* リセット・ベーススタイル */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Kalam', cursive;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  color: #2c3e50;
+}
+
+/* ===========================================
+  ヘッダースタイル
+   =========================================== */
+
+.memo-header-container {
+  background: #fefefe;
+  border-bottom: 3px solid #e8e8e8;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: visible;
+  z-index: 1000;
+}
+
+/* スパイラル装飾 */
+.memo-spiral {
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+}
+
+.spiral-ring {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* ヘッダーコンテンツ */
+.memo-header-content {
+  padding: 25px 50px;
+  background-image: 
+    linear-gradient(90deg, #f8f8f8 1px, transparent 1px),
+    linear-gradient(#f8f8f8 1px, transparent 1px);
+  background-size: 25px 25px;
+  background-position: 0 0, 0 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ブランド部分 */
+.memo-brand {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.memo-icon {
+  font-size: 28px;
+  display: inline-block;
+  transform: rotate(-10deg);
+  margin-right: 10px;
+}
+
+.memo-app-title {
+  font-family: 'Caveat', cursive;
+  font-size: 42px;
+  font-weight: 700;
+  color: #2c3e50;
+  display: inline-block;
+  transform: rotate(-0.8deg);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+  margin: 0;
+  position: relative;
+}
+
+.memo-underline {
+  width: 40%;
+  height: 4px;
+  background: linear-gradient(to right, #74b9ff, #0984e3);
+  margin: 8px auto;
+  border-radius: 2px;
+  transform: rotate(0.5deg);
+  opacity: 0.7;
+}
+
+/* ナビゲーション */
+.memo-nav {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  transform: rotate(-0.2deg);
+}
+
+.memo-nav-link {
+  color: #74b9ff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  transform: rotate(0.3deg);
+  border: 1px dashed transparent;
+}
+
+.memo-nav-link:hover {
+  background: rgba(116, 185, 255, 0.1);
+  border-color: #74b9ff;
+  transform: rotate(0deg) scale(1.05);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.memo-nav-link:active {
+  transform: rotate(0deg) scale(0.95);
+}
+
+.nav-icon {
+  font-size: 16px;
+  transform: rotate(-5deg);
+}
+
+.nav-divider {
+  color: #bdc3c7;
+  font-size: 20px;
+  font-weight: 300;
+  transform: rotate(15deg);
+}
+
+/* スマホのみ*/
+/* ハンバーガーメニューボタン */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #74b9ff;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.hamburger-line.open:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-line.open:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* モバイルナビゲーション */
+.mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fefefe;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  border-top: 2px solid #e8e8e8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.mobile-nav.open {
+  max-height: 200px;
+  opacity: 1;
+
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 30px;
+  color: #74b9ff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(116, 185, 255, 0.1);
+  padding-left: 40px;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+/* オーバーレイ */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+
+/* ヘッダー下部の罫線 */
+.memo-header-line {
+  height: 3px;
+  background: linear-gradient(to right, #ff9999 0%, transparent 20%, transparent 80%, #99ccff 100%);
+  margin: 0 50px;
+  opacity: 0.6;
+  transform: rotate(-0.1deg);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .memo-header-content {
+    padding: 15px 20px;
+  }
+  
+  .memo-app-title {
+    font-size: 26px;
+  }
+  
+  .memo-nav {
+    display: none;
+  }
+  
+  .hamburger-btn {
+    display: flex;
+  }
+  .memo-nav{
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .memo-app-title {
+    font-size: 22px;
+  }
+  
+  .memo-icon {
+    font-size: 24px;
+  }
+}
+
+/* ===========================================
+  ホーム
+   =========================================== */
+
+.home-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: calc(100vh - 200px);
+}
+
+/* ===========================================
+  共通のｃｓｓ
+   =========================================== */
+
+/* メモ帳ページ */
+.memo-page {
+  background: #fefefe;
+  min-height: 600px;
+  position: relative;
+  transform: rotate(-0.3deg);
+  box-shadow: 
+    0 2px 20px rgba(0,0,0,0.1),
+    0 8px 40px rgba(0,0,0,0.05);
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* 左側の穴 */
+.memo-holes {
+  position: absolute;
+  left: 20px;
+  top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  z-index: 1;
+}
+
+.memo-holes .hole {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.memo-content-area {
+  padding: 20px 20px 20px 67px; /* 左側を67pxに調整 */
+}
+
+/* ページヘッダー */
+.memo-page-header {
+  margin-bottom: 40px;
+  transform: rotate(0.2deg);
+}
+
+.memo-page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.page-icon {
+  font-size: 24px;
+  transform: rotate(-8deg);
+}
+
+.page-heading {
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  transform: rotate(-0.5deg);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+.memo-title-underline {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #74b9ff, transparent);
+  border-radius: 2px;
+  opacity: 0.7;
+  transform: rotate(-0.1deg);
+}
+
+
+.create-button-wrapper {
+  transform: rotate(-0.3deg);
+}
+
+.memo-create-link {
+  text-decoration: none;
+}
+
+.back-to-home-container {
+  margin: 15px 15px 25px auto;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.back-to-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(116, 185, 255, 0.3);
+  border: 2px solid transparent;
+  transform: rotate(-0.5deg);
+}
+
+.back-to-home-btn:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 0 5px 18px rgba(116, 185, 255, 0.4);
+  background: linear-gradient(135deg, #0984e3, #74b9ff);
+}
+
+.back-to-home-btn:active {
+  transform: rotate(0deg) translateY(1px);
+  box-shadow: 0 2px 8px rgba(116, 185, 255, 0.3);
+}
+
+.back-icon {
+  font-size: 16px;
+  transform: rotate(5deg);
+}
+
+.back-text {
+  transform: rotate(-1deg);
+}
+
+
+.create-icon {
+  font-size: 18px;
+  transform: rotate(15deg);
+}
+
+.create-text {
+  flex: 1;
+}
+
+.button-doodle {
+  font-size: 16px;
+  color: rgba(255,255,255,0.8);
+  transform: rotate(-10deg);
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+/* レスポンシブデザイン - 共通ｃｓｓ*/
+@media (max-width: 768px) {
+  .home-page-container {
+    padding: 10px;
+  }
+  
+  .memo-page {
+    transform: rotate(0deg);
+    margin: 0;
+  }
+  
+  .memo-content-area {
+    padding: 20px 20px 20px 50px;
+  }
+  
+  .memo-holes {
+    left: 15px;
+    top: 40px;
+    gap: 30px;
+  }
+  
+  .page-heading {
+    font-size: 26px;
+  }
+  
+  
+  .page-date {
+    position: static;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+  
+  .memo-page-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .memo-content-area {
+    padding: 20px 20px 20px 50px; 
+  }
+}
+@media (max-width: 480px) {
+  .memo-content-area {
+    padding: 15px 15px 15px 45px; 
+  }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .back-to-home-container {
+    text-align: center;
+    padding-left: 0;
+    margin: 10px 0 20px 14px;
+  }
+  
+  .back-to-home-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .back-icon {
+    font-size: 14px;
+  }
+}
+
+/* ホームボタン */
+.memo-create-button {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  border: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  transform: rotate(-0.8deg);
+  box-shadow: 
+    0 4px 12px rgba(116, 185, 255, 0.3),
+    0 2px 6px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.memo-create-button:hover {
+  transform: rotate(-0.3deg) scale(1.02);
+  box-shadow: 
+    0 6px 20px rgba(116, 185, 255, 0.4),
+    0 4px 8px rgba(0,0,0,0.15);
+}
+
+.memo-create-button:active {
+  transform: rotate(-0.3deg) scale(0.98);
+}
+
+@media (max-width: 768px){
+  .memo-create-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===========================================
+  SearchBox コンポーネントスタイル
+   =========================================== */
+
+.memo-search-container {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #fdfdfd;
+  border: 2px dashed #e8e8e8;
+  border-radius: 12px;
+  transform: rotate(0.2deg);
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+/* 検索ヘッダー */
+.memo-search-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  transform: rotate(-0.3deg);
+}
+
+.search-icon {
+  font-size: 18px;
+  transform: rotate(-12deg);
+  filter: sepia(0.3);
+}
+
+.search-title {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  transform: rotate(0.5deg);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+
+
+.search-title-underline {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #74b9ff, transparent);
+  border-radius: 1px;
+  opacity: 0.6;
+  margin-bottom: 15px;
+  transform: rotate(-0.1deg);
+}
+
+/* 検索ボックス */
+.memo-search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  transform: rotate(-0.1deg);
+}
+
+.memo-search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  color: #2c3e50;
+  background: #fff;
+  transition: all 0.3s ease;
+  transform: rotate(0.2deg);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.memo-search-input:focus {
+  outline: none;
+  border-color: #74b9ff;
+  box-shadow: 
+    inset 0 1px 3px rgba(0,0,0,0.05),
+    0 0 0 3px rgba(116, 185, 255, 0.1);
+  transform: rotate(0deg);
+}
+
+.memo-search-input::placeholder {
+  color: #95a5a6;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* クリアボタン */
+.memo-clear-button {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  transform: rotate(-0.5deg);
+  box-shadow: 
+    0 2px 6px rgba(231, 76, 60, 0.3),
+    0 1px 3px rgba(0,0,0,0.1);
+}
+
+.memo-clear-button:hover {
+  transform: rotate(-0.2deg) scale(1.02);
+  box-shadow: 
+    0 3px 10px rgba(231, 76, 60, 0.4),
+    0 2px 5px rgba(0,0,0,0.15);
+}
+
+.memo-clear-button:active {
+  transform: rotate(-0.2deg) scale(0.98);
+}
+
+.clear-icon {
+  font-size: 12px;
+  font-weight: bold;
+  transform: rotate(5deg);
+}
+
+.clear-text {
+  font-weight: 500;
+}
+
+/* ヒント部分 */
+.search-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: rotate(0.1deg);
+  margin-top: 8px;
+}
+
+.hint-icon {
+  font-size: 14px;
+  transform: rotate(-10deg);
+  filter: sepia(0.2);
+}
+
+.hint-text {
+  color: #7f8c8d;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+.sp-only{
+  display: none;
+}
+
+/* レスポンシブデザイン - SearchBox */
+@media (max-width: 768px) {
+  .memo-search-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    transform: rotate(0deg);
+  }
+  
+  .memo-search-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .memo-clear-button {
+    align-self: flex-end;
+    width: fit-content;
+  }
+  
+  .search-title {
+    font-size: 20px;
+  }
+  
+  .memo-search-input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+  
+  .search-hint {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .sp-only{
+    display: block;
+  }
+}
+
+/* ===========================================
+  ShoppingListCard コンポーネントスタイル
+   =========================================== */
+
+/* メモコンテンツエリア */
+.memo-content-area {
+  padding: 20px 20px 20px 67px;
+}
+
+/* リスト一覧コンテナ */
+.memo-lists-container {
+  margin-top: 30px;
+}
+
+.memo-lists-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  transform: rotate(-0.2deg);
+}
+
+.lists-icon {
+  font-size: 20px;
+  transform: rotate(-8deg);
+}
+
+.lists-title {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  transform: rotate(0.3deg);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.lists-title-underline {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #74b9ff, transparent);
+  border-radius: 1px;
+  opacity: 0.6;
+  margin-bottom: 20px;
+  transform: rotate(-0.1deg);
+}
+
+/* カードグリッド */
+.memo-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+/* メモカード */
+.memo-list-card {
+  background: #fefefe;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  transform: rotate(0.3deg);
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.08),
+    0 1px 4px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.memo-list-card:nth-child(even) {
+  transform: rotate(-0.4deg);
+}
+
+.memo-list-card:nth-child(3n) {
+  transform: rotate(0.6deg);
+}
+
+.memo-list-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 
+    0 6px 20px rgba(0,0,0,0.12),
+    0 3px 8px rgba(0,0,0,0.08);
+  z-index: 2;
+}
+
+/* カード装飾 */
+.card-pin {
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  border-radius: 50%;
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  z-index: 3;
+}
+
+.card-corner-fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 15px 0;
+  border-color: transparent #f0f0f0 transparent transparent;
+}
+
+/* カードリンク */
+.memo-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.memo-card-link:hover {
+  color: inherit;
+}
+
+/* カードヘッダー */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  transform: rotate(-0.2deg);
+}
+
+.card-date-icon {
+  font-size: 16px;
+  transform: rotate(-8deg);
+}
+
+.card-date {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  transform: rotate(0.3deg);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+/* カードコンテンツ */
+.card-content {
+  margin-bottom: 10px;
+}
+
+.card-stats {
+  margin-bottom: 12px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  transform: rotate(0.1deg);
+}
+
+.stat-icon {
+  font-size: 14px;
+  transform: rotate(-5deg);
+}
+
+.stat-text {
+  font-family: 'Kalam', cursive;
+  font-size: 14px;
+  color: #34495e;
+  font-weight: 400;
+}
+
+.stat-text strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* タイムスタンプ */
+.card-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: rotate(-0.1deg);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #e8e8e8;
+}
+
+.timestamp-icon {
+  font-size: 12px;
+  transform: rotate(-8deg);
+  opacity: 0.7;
+}
+
+.timestamp-text {
+  font-family: 'Kalam', cursive;
+  font-size: 12px;
+  color: #7f8c8d;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* 削除ボタン */
+.memo-delete-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  transform: rotate(-0.8deg);
+  box-shadow: 
+    0 2px 4px rgba(231, 76, 60, 0.3),
+    0 1px 2px rgba(0,0,0,0.1);
+}
+
+.memo-delete-button:hover {
+  transform: rotate(-0.3deg) scale(1.05);
+  box-shadow: 
+    0 3px 8px rgba(231, 76, 60, 0.4),
+    0 2px 4px rgba(0,0,0,0.15);
+}
+
+.memo-delete-button:active {
+  transform: rotate(-0.3deg) scale(0.95);
+}
+
+.delete-icon {
+  font-size: 10px;
+  transform: rotate(8deg);
+}
+
+.delete-text {
+  font-weight: 500;
+}
+
+/* 空の状態スタイル */
+.memo-empty-state {
+  margin-top: 30px;
+  padding: 30px;
+  background: #fdfdfd;
+  border: 2px dashed #e8e8e8;
+  border-radius: 12px;
+  text-align: center;
+  transform: rotate(-0.1deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.empty-state-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  transform: rotate(0.2deg);
+}
+
+.empty-icon {
+  font-size: 20px;
+  transform: rotate(-8deg);
+  opacity: 0.7;
+}
+
+.empty-title {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  transform: rotate(-0.3deg);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.empty-doodle {
+  font-size: 18px;
+  color: #74b9ff;
+  transform: rotate(-12deg);
+  font-weight: bold;
+}
+
+.empty-title-underline {
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(to right, #74b9ff, transparent);
+  border-radius: 1px;
+  opacity: 0.6;
+  margin: 8px auto 20px;
+  transform: rotate(-0.1deg);
+}
+
+.empty-content {
+  transform: rotate(0.1deg);
+}
+
+.empty-search-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-result-icon {
+  font-size: 16px;
+  transform: rotate(-10deg);
+  opacity: 0.7;
+}
+
+.empty-message {
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
+  color: #7f8c8d;
+  margin: 0;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.search-keyword {
+  color: #74b9ff;
+  font-weight: 600;
+  background: rgba(116, 185, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.empty-no-lists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.no-lists-icon {
+  font-size: 24px;
+  transform: rotate(-5deg);
+  opacity: 0.6;
+}
+
+.empty-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  transform: rotate(-0.3deg);
+}
+
+.suggestion-arrow {
+  font-size: 16px;
+  color: #74b9ff;
+  transform: rotate(-15deg);
+  font-weight: bold;
+}
+.empty-create-link {
+  color: #74b9ff;
+  text-decoration: none;
+  font-family: 'Kalam', cursive;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  border: 1px dashed transparent;
+}
+
+.empty-create-link:hover {
+  background: rgba(116, 185, 255, 0.1);
+  border-color: #74b9ff;
+  transform: scale(1.02);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* レスポンシブデザイン - ShoppingListCard */
+@media (max-width: 768px) {
+  .memo-content-area {
+    padding: 20px 20px 20px 50px;
+  }
+  
+  .memo-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .memo-list-card {
+    transform: rotate(0deg);
+    padding: 15px;
+  }
+  
+  .memo-list-card:hover {
+    transform: scale(1.01);
+  }
+  
+  .lists-title {
+    font-size: 24px;
+  }
+  
+  .empty-title {
+    font-size: 24px;
+  }
+
+  .empty-message{
+    font-size: 14px;
+  }
+  
+  .empty-suggestion {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .empty-create-link{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .memo-content-area {
+    padding: 15px 15px 15px 45px;
+  }
+  
+  .memo-cards-grid {
+    gap: 12px;
+  }
+  
+  .memo-list-card {
+    padding: 12px;
+  }
+  
+  .card-stats {
+    margin-bottom: 8px;
+  }
+  
+  .stat-item {
+    margin-bottom: 6px;
+  }
+}
+
+/* ===========================================
+  ShoppingList スタイル
+   =========================================== */
+
+/* 日付バッジ */
+.shopping-date-badge {
+  background: rgba(116, 185, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-left: 12px;
+  transform: rotate(-0.5deg);
+  font-family: 'Kalam', cursive;
+}
+
+/* 保存ボタン状態管理 */
+.shopping-save-button {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  border: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  transform: rotate(-0.8deg);
+  box-shadow: 0 4px 12px rgba(116, 185, 255, 0.3), 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.shopping-save-button.saved {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3), 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.shopping-save-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 進捗バッジ */
+.shopping-progress-badge {
+  background: rgba(116, 185, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-left: 10px;
+  transform: rotate(0.5deg);
+  display: inline-block;
+  font-family: 'Kalam', cursive;
+}
+
+/* ===========================================
+  ItemForm コンポーネント専用スタイル
+   =========================================== */
+
+.item-form {
+  width: 100%;
+}
+
+/* 追加ボタン */
+.item-add-button {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  transform: rotate(-0.5deg);
+  box-shadow: 
+    0 2px 6px rgba(46, 204, 113, 0.3),
+    0 1px 3px rgba(0,0,0,0.1);
+}
+
+.item-add-button:hover:not(:disabled) {
+  transform: rotate(-0.2deg) scale(1.02);
+  box-shadow: 
+    0 3px 10px rgba(46, 204, 113, 0.4),
+    0 2px 5px rgba(0,0,0,0.15);
+}
+
+.item-add-button:active:not(:disabled) {
+  transform: rotate(-0.2deg) scale(0.98);
+}
+
+.item-add-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: rotate(-0.5deg);
+}
+
+.add-icon {
+  font-size: 12px;
+  transform: rotate(5deg);
+}
+
+.add-text {
+  font-weight: 500;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .item-add-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===========================================
+  ItemList コンポーネント専用スタイル
+   =========================================== */
+
+.item-list-container {
+  margin-top: 10px;
+}
+
+/* アイテムカードのグリッドレイアウト */
+.item-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .item-cards-grid {
+    gap: 10px;
+  }
+}
+
+/* ===========================================
+  ItemCard コンポーネント専用スタイル
+   =========================================== */
+
+/* アイテムカード基本スタイル */
+.item-card {
+  background: #fefefe;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+  transform: rotate(0.2deg);
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.08),
+    0 1px 4px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+}
+
+.item-card:nth-child(even) {
+  transform: rotate(-0.3deg);
+}
+
+.item-card:nth-child(3n) {
+  transform: rotate(0.4deg);
+}
+
+.item-card:hover {
+  transform: rotate(0deg) scale(1.01);
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.1),
+    0 2px 6px rgba(0,0,0,0.08);
+  z-index: 2;
+}
+
+/* 完了状態のスタイル */
+.item-card.completed {
+  background: #f8f9fa;
+  border-color: #27ae60;
+  opacity: 0.8;
+}
+
+.item-card.pending {
+  border-color: #74b9ff;
+}
+
+/* カード装飾ピン */
+.item-card-pin {
+  position: absolute;
+  top: -6px;
+  left: 15px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  border-radius: 50%;
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  z-index: 3;
+}
+
+/* アイテムコンテンツ */
+.item-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.item-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.item-status-icon {
+  font-size: 18px;
+  transform: rotate(-5deg);
+  flex-shrink: 0;
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-name {
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+  transform: rotate(0.1deg);
+  transition: all 0.3s ease;
+}
+
+.item-name.completed-text {
+  text-decoration: line-through;
+  color: #7f8c8d;
+  opacity: 0.7;
+}
+
+.item-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transform: rotate(-0.2deg);
+}
+
+.status-icon {
+  font-size: 12px;
+  transform: rotate(-3deg);
+}
+
+.status-text {
+  font-family: 'Kalam', cursive;
+  font-size: 12px;
+  color: #7f8c8d;
+  font-weight: 400;
+}
+
+/* アクションボタン群 */
+.item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.item-action-button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  transform: rotate(-0.5deg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.complete-button {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.uncomplete-button {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.move-button {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+}
+
+.delete-button {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.item-action-button:hover {
+  transform: rotate(-0.2deg) scale(1.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.item-action-button:active {
+  transform: rotate(-0.2deg) scale(0.95);
+}
+
+.action-icon {
+  font-size: 10px;
+  transform: rotate(3deg);
+}
+
+.action-text {
+  font-weight: 500;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .item-card {
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .item-main {
+    gap: 10px;
+  }
+  
+  .item-actions {
+    justify-content: flex-end;
+    gap: 5px;
+  }
+  
+  .item-action-button {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+  
+  .action-text {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .item-card {
+    padding: 10px;
+  }
+  
+  .item-name {
+    font-size: 14px;
+  }
+}
+
+/* ===========================================
+  Wishlist スタイル
+   =========================================== */
+
+/* ウィッシュリストバッジ */
+.wishlist-badge {
+  background: rgba(255, 193, 7, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-left: 12px;
+  transform: rotate(-0.5deg);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Kalam', cursive;
+}
+
+.wishlist-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e67e22;
+}
+
+.wishlist-label {
+  font-size: 12px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+/* ウィッシュリスト保存ボタン */
+.wishlist-save-button {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  border: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  transform: rotate(-0.8deg);
+  box-shadow: 
+    0 4px 12px rgba(255, 193, 7, 0.3),
+    0 2px 6px rgba(0,0,0,0.1);
+}
+
+.wishlist-save-button.saved {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  box-shadow: 
+    0 4px 12px rgba(39, 174, 96, 0.3),
+    0 2px 6px rgba(0,0,0,0.1);
+}
+
+.wishlist-save-button:hover {
+  transform: rotate(-0.3deg) scale(1.02);
+}
+
+
+
+/* ===========================================
+  フッタースタイル
+   =========================================== */
+
+.memo-footer-container {
+  background: #fefefe;
+  border-top: 3px solid #e8e8e8;
+  margin-top: 40px;
+  position: relative;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}
+
+/* フッター上部の罫線 */
+.memo-footer-line {
+  height: 3px;
+  background: linear-gradient(to right, #99ccff 0%, transparent 20%, transparent 80%, #ff9999 100%);
+  margin: 0 50px;
+  opacity: 0.6;
+  transform: rotate(0.1deg);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* フッターコンテンツ */
+.memo-footer-content {
+  padding: 25px 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  background-image: 
+    linear-gradient(90deg, #f8f8f8 1px, transparent 1px),
+    linear-gradient(#f8f8f8 1px, transparent 1px);
+  background-size: 25px 25px;
+  background-position: 0 0, 0 0;
+}
+
+/* フッターの装飾アイコン */
+.memo-footer-doodles {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 15px;
+  transform: rotate(-0.3deg);
+}
+
+.doodle {
+  font-size: 18px;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+  transform: rotate(10deg);
+}
+
+.doodle:nth-child(1) {
+  animation-delay: 0s;
+  transform: rotate(-5deg);
+}
+
+.doodle:nth-child(2) {
+  animation-delay: 1s;
+  transform: rotate(8deg);
+}
+
+.doodle:nth-child(3) {
+  animation-delay: 2s;
+  transform: rotate(-3deg);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(var(--rotation, 0deg));
+  }
+  50% {
+    transform: translateY(-5px) rotate(var(--rotation, 0deg));
+  }
+}
+
+/* コピーライト */
+.memo-copyright {
+  font-family: 'Kalam', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  color: #7f8c8d;
+  margin: 15px 0;
+  transform: rotate(0.2deg);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.copyright-icon {
+  display: inline-block;
+  transform: rotate(-10deg);
+  margin-right: 3px;
+  font-weight: 700;
+  color: #74b9ff;
+}
+
+/* フッター装飾ライン */
+.memo-footer-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  transform: rotate(-0.1deg);
+}
+
+.decoration-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #74b9ff, transparent);
+  border-radius: 1px;
+}
+
+.decoration-heart {
+  font-size: 16px;
+  color: #ff6b6b;
+  transform: rotate(-8deg);
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: rotate(-8deg) scale(1);
+  }
+  50% {
+    transform: rotate(-8deg) scale(1.1);
+  }
+}
+
+/* メモ帳の下部影 */
+.memo-bottom-shadow {
+  height: 15px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), transparent);
+  margin: 0 20px;
+  border-radius: 50%;
+  transform: rotate(-0.2deg);
+}
+
+/* レスポンシブデザイン - フッター */
+@media (max-width: 768px) {
+  .memo-footer-content {
+    padding: 20px 25px 15px;
+  }
+  
+  .memo-footer-line {
+    margin: 0 25px;
+  }
+  
+  .memo-footer-doodles {
+    gap: 15px;
+  }
+  
+  .doodle {
+    font-size: 16px;
+  }
+  
+  .memo-copyright {
+    font-size: 14px;
+  }
+  
+  .decoration-line {
+    width: 40px;
+  }
+}
+
+/* ===========================================
+  超小型デバイス対応（397px以下）
+   =========================================== */
+
+@media (max-width: 397px) {
+  /* ヘッダー調整 */
+  .memo-header-content {
+    padding: 12px 15px;
+  }
+  
+  .memo-app-title {
+    font-size: 18px;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+  }
+  
+  .memo-icon {
+    font-size: 20px;
+    margin-right: 6px;
+  }
+  
+  .memo-underline {
+    width: 50%;
+    margin: 6px auto;
+  }
+  
+  /* ナビゲーションの完全非表示 */
+  .memo-nav {
+    display: none !important;
+  }
+  
+  /* ハンバーガーボタンの調整 */
+  .hamburger-btn {
+    right: 15px;
+    padding: 8px;
+  }
+  
+  .hamburger-line {
+    width: 20px;
+    height: 2px;
+  }
+  
+  /* モバイルナビの調整 */
+  .mobile-nav-link {
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+  
+  /* 共通ボタンの調整 */
+  .memo-create-button {
+    padding: 12px 18px;
+    font-size: 14px;
+    gap: 8px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .create-text {
+    white-space: nowrap;
+  }
+  
+  /* 戻るボタンの調整 */
+  .back-to-home-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  
+  /* ページタイトルの調整 */
+  .page-heading {
+    font-size: 22px;
+    word-break: break-word;
+  }
+  
+  /* コンテンツエリアの調整 */
+  .memo-content-area {
+    padding: 12px 12px 12px 40px;
+  }
+  
+  .memo-holes {
+    left: 12px;
+    top: 35px;
+    gap: 25px;
+  }
+  
+  .memo-holes .hole {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* 検索ボックスの調整 */
+  .memo-search-container {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .search-title {
+    font-size: 18px;
+  }
+  
+  .memo-search-input {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  
+  .memo-clear-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  /* カードの調整 */
+  .memo-list-card {
+    padding: 10px;
+  }
+  
+  .card-date {
+    font-size: 16px;
+  }
+  
+  .stat-text {
+    font-size: 12px;
+  }
+  
+  /* アイテムカードの調整 */
+  .item-card {
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .item-name {
+    font-size: 13px;
+  }
+  
+  .item-action-button {
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+  
+  /* フッターの調整 */
+  .memo-footer-content {
+    padding: 15px 20px 12px;
+  }
+  
+  .memo-copyright {
+    font-size: 12px;
+  }
+  
+  .doodle {
+    font-size: 14px;
+  }
+  
+  /* 空状態の調整 */
+  .empty-title {
+    font-size: 18px;
+    word-break: break-word;
+  }
+  
+  .empty-message,.empty-create-link {
+    font-size: 14px;
+  }
+  
+  /* 保存ボタンの調整 */
+  .shopping-save-button,
+  .wishlist-save-button {
+    padding: 12px 18px;
+    font-size: 14px;
+    gap: 8px;
+  }
+}
+
+/* さらに小さなデバイス（320px以下）への対応 */
+@media (max-width: 320px) {
+  .memo-app-title {
+    font-size: 16px;
+    max-width: 200px;
+  }
+  
+  .memo-header-content {
+    padding: 10px 12px;
+  }
+  
+  .memo-content-area {
+    padding: 10px 10px 10px 35px;
+  }
+  
+  .page-heading {
+    font-size: 20px;
+  }
+  
+  .memo-create-button {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .search-title {
+    font-size: 14px;
+    max-width: 150px;
+  }
+  .lists-title{
+    font-size: 14px;
+    max-width: 150px;
+    white-space: nowrap;
+  }
+
+  .empty-title{
+    font-size: 14px;
+  }
+}
+
