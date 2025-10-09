@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-export default function SearchBox({ onSearch, searchKeyword }) {
+export default function SearchBox({ onSearch, searchKeyword, lang, t }) {// eslint-disable-line no-unused-vars
+
   const [inputValue, setInputValue] = useState(searchKeyword || '')
 
   const handleInputChange = (e) => {
@@ -18,7 +19,7 @@ export default function SearchBox({ onSearch, searchKeyword }) {
         <div className="memo-search-container">
       <div className="memo-search-header">
         <span className="search-icon">🔍</span>
-        <h3 className="search-title">リスト検索</h3>
+        <h3 className="search-title">{t('searchTitle')}</h3>
         
       </div>
       <div className="search-title-underline"></div>
@@ -27,7 +28,7 @@ export default function SearchBox({ onSearch, searchKeyword }) {
         <input
           type="text"
           name='search'
-          placeholder="日付で検索 (例: 2025-08, 08-01, 2025)"
+          placeholder={t('searchPlaceholder')}
           value={inputValue}
           onChange={handleInputChange}
           className="memo-search-input"
@@ -39,14 +40,14 @@ export default function SearchBox({ onSearch, searchKeyword }) {
             className="memo-clear-button"
             >
             <span className="clear-icon">✕</span>
-            <span className="clear-text">クリア</span>
+            <span className="clear-text">{t('clearSearch')}</span>
           </button>
         )}
       </div>
       <div className="search-hint">
         <span className="hint-icon">💡</span>
         <small className="hint-text">
-          日付の一部を入力して検索できます。<br className='sp-only'></br>（年、月、日付など）
+          {t('searchHint')}<br className='sp-only'></br>{t('searchHintLine2')}
       </small>
       </div>
     </div>

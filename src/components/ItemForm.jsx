@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function ItemForm({onAddItem}) {
+export default function ItemForm({onAddItem,lang, t}) {// eslint-disable-line no-unused-vars
 const [itemName, setItemName] = useState('')
 
 const handleSubmit = (e) => {
@@ -19,7 +19,7 @@ const handleSubmit = (e) => {
       <input type="text" 
       value={itemName}
       onChange={(e) => setItemName(e.target.value)}
-      placeholder="アイテム名" 
+      placeholder={t('itemPlaceholder')}
       required
       className="memo-search-input"
       />
@@ -29,12 +29,12 @@ const handleSubmit = (e) => {
       disabled={!itemName.trim()}
       >
         <span className="add-icon">➕</span>
-        <span className="add-text">追加</span>
+        <span className="add-text">{t('addButton')}</span>
       </button>
       </div>
       <div className="search-hint">
         <span className="hint-icon">💡</span>
-        <span className="hint-text">Enter キーでも追加できます</span>
+        <span className="hint-text">{t('addHint')}</span>
       </div>
     </form>
   )

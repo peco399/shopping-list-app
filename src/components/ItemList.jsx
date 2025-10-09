@@ -7,7 +7,9 @@ export default function ItemList({
   onToggleComplete,
   onMoveToShopping,     // Wishlist用（オプショナル）
   showCompleteButton = true,   // 完了ボタンを表示するか
-  showMoveButton = false  
+  showMoveButton = false,
+  lang,// eslint-disable-line no-unused-vars
+  t  
 }) {
 
   if (!items || items.length === 0) {
@@ -15,7 +17,7 @@ export default function ItemList({
       <div className="memo-empty-state">
         <div className="empty-state-header">
           <span className="empty-icon">📝</span>
-          <h3 className="empty-title">アイテムリスト</h3>
+          <h3 className="empty-title">{t('itemList')}</h3>
           <div className="empty-doodle">✨</div>
         </div>
         <div className="empty-title-underline"></div>
@@ -23,9 +25,9 @@ export default function ItemList({
         <div className="empty-content">
           <div className="empty-no-lists">
             <span className="no-lists-icon">🛒</span>
-            <p className="empty-message">まだアイテムが追加されていません。</p>
+            <p className="empty-message">{t('noItemsYet')}</p>
             <div className="empty-suggestion">
-              <span className="empty-create-link">上のフォームから新しいアイテムを追加してみましょう！</span>
+              <span className="empty-create-link">{t('addItemSuggestion')}</span>
             </div>
           </div>
         </div>
@@ -46,6 +48,7 @@ export default function ItemList({
           onMoveToShopping={onMoveToShopping}
           showCompleteButton={showCompleteButton}
           showMoveButton={showMoveButton}
+          t={t} lang={lang}
           />
           
         ))}

@@ -3,7 +3,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import ShoppingListCard from '../components/shoppingListCard'
 import SearchBox from '../components/SearchBox'
 
-export default function HomePage({savedLists, onDeleteList,onSearch, searchKeyword}) {
+export default function HomePage({savedLists, onDeleteList,onSearch, searchKeyword, lang, t}) {
   const navigate = useNavigate()
   const today = new Date().toISOString().split('T')[0]
 
@@ -56,7 +56,7 @@ export default function HomePage({savedLists, onDeleteList,onSearch, searchKeywo
           <div className="memo-page-header">
             <div className="memo-page-title">
               <span className="page-icon">🏠</span>
-              <h2 className="page-heading">ホーム</h2>
+              <h2 className="page-heading">Home</h2>
             
             </div>
             <div className="memo-title-underline"></div>
@@ -66,15 +66,19 @@ export default function HomePage({savedLists, onDeleteList,onSearch, searchKeywo
               
                 <button className="memo-create-button" onClick={handleCreateNewList}>
                   <span className="create-icon">✎</span>
-                  <span className="create-text">新しい買い物リストを作成</span>
+                  <span className="create-text">{t('createNewList')}</span>
                   <div className="button-doodle">→</div>
                 </button>
               
       </div>
-      <SearchBox onSearch={onSearch} searchKeyword={searchKeyword} />
+      <SearchBox onSearch={onSearch} searchKeyword={searchKeyword} 
+      lang={lang}
+        t={t}/>
       <ShoppingListCard savedLists={savedLists}
       onDeleteList={onDeleteList}
       searchKeyword={searchKeyword}
+      lang={lang}
+      t={t}
       />
       </div>
       </div>

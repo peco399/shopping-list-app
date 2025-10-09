@@ -6,7 +6,9 @@ export default function ItemCard({
   onToggleComplete,
   onMoveToShopping,    
   showCompleteButton = true, 
-  showMoveButton = false    
+  showMoveButton = false,
+  lang,// eslint-disable-line no-unused-vars
+  t  
   }) {
   
   const handleDelete=()=>{
@@ -38,7 +40,7 @@ export default function ItemCard({
                 {item.completed ? '🎉' : '📝'}
               </span>
               <span className="status-text">
-                {item.completed ? '購入済み' : '未購入'}
+                {item.completed ? t('completed') : t('pending')}
               </span>
             </div>
           </div>
@@ -54,7 +56,7 @@ export default function ItemCard({
               {item.completed ? '↩️' : '✓'}
             </span>
             <span className="action-text">
-              {item.completed ? '購入済み' : '未購入'}
+              {item.completed ? t('uncomplete') : t('complete')}
             </span>
           </button>
         )}
@@ -65,17 +67,17 @@ export default function ItemCard({
             className="item-action-button move-button"
           >
             <span className="action-icon">🛒</span>
-            <span className="action-text">買い物へ</span>
+            <span className="action-text">{t('move')}</span>
           </button>
         )}
         
         <button 
           onClick={handleDelete}
           className="item-action-button delete-button"
-          title="アイテムを削除"
+          title={t('delete')}
         >
           <span className="action-icon">🗑️</span>
-          <span className="action-text">削除</span>
+          <span className="action-text">{t('delete')}</span>
         </button>
       </div>
       

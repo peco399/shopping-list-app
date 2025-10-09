@@ -1,11 +1,12 @@
 
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/header'
-import Footer from './components/Footer'
+import Footer from './components/footer'
 import Home from './pages/Home'
 import ShoppingList from './pages/ShoppingList'
 import  WishList from './pages/WishList'
 import { useState, useEffect } from 'react'
+import translations from './Translations'
 
 import './App.css'
 
@@ -14,7 +15,27 @@ function App() {
 
   const [wishlistItems, setWishlistItems] = useState([])
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [initialized, setInitialized] = useState(false); // ←追加
+  const [initialized, setInitialized] = useState(false)
+  const [lang, setLang] = useState('ja')
+
+  const t = (key) => {
+    return translations[lang][key] || key
+  }
+
+  useEffect(() => {
+    const saved = localStorage.getItem('shopping-data')
+
+    if (saved) {
+      try {
+        const data = JSON.parse(saved)
+        setSavedLists(data.lists || [])
+        setWishlistItems(data.wishlist || [])
+      } catch (e) {
+        console.error('localStorageのJSONが不正です', e)
+      }
+    }
+    setInitialized(true)
+  }, [])
 
   useEffect(() => {
   const saved = localStorage.getItem('shopping-data');
@@ -123,7 +144,7 @@ function App() {
 
 
   const deleteShoppingList =(dateId)=>{
-    const confirmDelete =window.confirm(`${dateId}の買い物リストを削除しますか？\nこの操作は取り消せません。`)
+    const confirmDelete =window.confirm(`${dateId} ${t('confirmDelete')}`)
     if (confirmDelete) {
       setSavedLists(prevLists => 
         prevLists.filter(list => list.dateId !== dateId)
@@ -132,62 +153,29 @@ function App() {
   
   }
 
-  const moveToShoppingList = (wishlistItem, selectedDate) => {
-    const matchingLists = savedLists.filter(list => 
-      list.dateId === selectedDate || list.dateId.startsWith(selectedDate + '(')
-    )
-    if (matchingLists.length === 0) {
-      alert(`${selectedDate} の買い物リストは存在しません。\n先にホーム画面で該当日付の買い物リストを作成してください。`)
-      return false
-    }
-    
-    let targetList
-    
-    if (matchingLists.length === 1) {
-      // 該当するリストが1つの場合はそのまま使用
-      targetList = matchingLists[0]
-    } else {
-      // 複数のリストがある場合は選択させる
-      const listOptions = matchingLists.map((list, index) => 
-        `${index + 1}. ${list.dateId} (アイテム数: ${list.items.length})`
-      ).join('\n')
-      
-      const choice = prompt(
-        `${selectedDate} の買い物リストが複数あります。移行先を選択してください：\n\n${listOptions}\n\n番号を入力してください（1-${matchingLists.length}）:`
-      )
-      
-      if (choice === null || choice.trim() === '') {
-        return false // キャンセル
-      }
-      
-      const choiceIndex = parseInt(choice.trim()) - 1
-      
-      if (isNaN(choiceIndex) || choiceIndex < 0 || choiceIndex >= matchingLists.length) {
-        alert('無効な選択です。')
-        return false
-      }
-      
-      targetList = matchingLists[choiceIndex]
-    }
-    
-    // 移行するアイテムをShoppingList用に変換
-    const shoppingItem = {
-      id: Date.now(),
-      name: wishlistItem.name,
-      completed: false
-    }
-
-    // 選択されたリストにアイテムを追加
-    const updatedItems = [...targetList.items, shoppingItem]
-    saveShoppingList(targetList.dateId, updatedItems)
-
-    // 移行後にwishlistからアイテムを削除
-    setWishlistItems(prevItems => 
-      prevItems.filter(item => item.id !== wishlistItem.id)
-    )
-    
-    return true
+  const moveToShoppingList = (wishlistItem, targetDateId) => {
+  const targetList = savedLists.find(list => list.dateId === targetDateId)
+  
+  if (!targetList) {
+    alert(`${targetDateId}${t('noShoppingLists')}`)
+    return false
   }
+  
+  const shoppingItem = {
+    id: Date.now(),
+    name: wishlistItem.name,
+    completed: false
+  }
+  
+  const updatedItems = [...targetList.items, shoppingItem]
+  saveShoppingList(targetList.dateId, updatedItems)
+  
+  setWishlistItems(prevItems =>
+    prevItems.filter(item => item.id !== wishlistItem.id)
+  )
+  
+  return true
+}
     
   const addWishlistItem = (itemName) => {
     if (!itemName.trim()) return
@@ -215,7 +203,7 @@ function App() {
   return (
     <>
       <Router>
-      <Header />
+      <Header  lang={lang} setLang={setLang} t={t} />
       <Routes>
         <Route 
           path="/" 
@@ -225,19 +213,29 @@ function App() {
               onDeleteList={deleteShoppingList}
               onSearch={handleSearch}
               searchKeyword={searchKeyword}
+              lang={lang}
+              t={t}
             />
           } 
         />
-        <Route path='/shopping/:dateId' element={<ShoppingList onSaveList={saveShoppingList} savedLists={savedLists} />} />
+        <Route path='/shopping/:dateId' 
+        element={<ShoppingList onSaveList={saveShoppingList}
+        savedLists={savedLists}  lang={lang}
+                t={t}
+                />
+                }
+                />
         <Route path='/wishlist' element={<WishList 
             wishlistItems={wishlistItems}
             onAddWishlistItem={addWishlistItem}
             onDeleteWishlistItem={deleteWishlistItem}
             onMoveToShopping={moveToShoppingList} 
-          savedLists={savedLists} />}/>
+          savedLists={savedLists}
+          lang={lang}
+                t={t} />}/>
       </Routes>
     
-      <Footer />
+      <Footer lang={lang} t={t} />
     </Router>
       
     </>

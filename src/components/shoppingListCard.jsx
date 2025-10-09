@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function ShoppingListCard({savedLists,onDeleteList,searchKeyword}) {
+export default function ShoppingListCard({savedLists,onDeleteList,searchKeyword, lang, t}) {// eslint-disable-line no-unused-vars
     if (!savedLists || savedLists.length === 0){
     return (
       <div className="memo-empty-state">
@@ -17,16 +17,16 @@ export default function ShoppingListCard({savedLists,onDeleteList,searchKeyword}
           <div className="empty-search-result">
               <span className="search-result-icon">🔍</span>
               <p className="empty-message">
-          「{searchKeyword}」に一致するリストがありません。</p>
+          「{searchKeyword}」{t('noSearchResults')}</p>
           </div>
           ) : (
           <div className="empty-no-lists">
               <span className="no-lists-icon">📝</span>
-              <p className="empty-message">まだ保存されたリストがありません。</p>
+              <p className="empty-message">{t('noSearchResults')}</p>
               <div className="empty-suggestion">
-                <span className="suggestion-arrow">↗</span>
+              
                 <Link to="/shopping/2025-08-13" className="empty-create-link">
-                  新しいリストを作成する
+                {t('createFirstList')}
                 </Link>
               </div>
             </div>
@@ -73,13 +73,13 @@ export default function ShoppingListCard({savedLists,onDeleteList,searchKeyword}
                   <div className="stat-item">
                     <span className="stat-icon">🛒</span>
                     <span className="stat-text">
-                      アイテム数: <strong>{list.items.length}個</strong>
+                      <strong>{list.items.length} </strong>{t('itemsCount')}
                       </span>
                 </div>
                 <div className="stat-item">
                     <span className="stat-icon">✅</span>
                     <span className="stat-text">
-                      完了済み: <strong>{list.items.filter(item => item.completed).length}個</strong>
+                      <strong>{list.items.filter(item => item.completed).length} {t('completedCount')}</strong>
                     </span>
                   </div>
                 </div>
@@ -87,17 +87,17 @@ export default function ShoppingListCard({savedLists,onDeleteList,searchKeyword}
                 <div className="card-timestamp">
                   <span className="timestamp-icon">🕒</span>
                   <small className="timestamp-text">
-                    最終更新: {new Date(list.updatedAt || list.createdAt).toLocaleString('ja-JP')}
+                    {t('updated')}{new Date(list.updatedAt || list.createdAt).toLocaleString('ja-JP')}
                   </small>
                 </div>
               </div>
             </Link>
             <button onClick={(e) => handleDeleteClick(e, list.dateId)}
               className="memo-delete-button"
-              title="リストを削除"
+              title="リストを削除 delete list"
               >
                 <span className="delete-icon">🗑️</span>
-              <span className="delete-text">削除</span>
+              <span className="delete-text">{t('deleteList')}</span>
               
             </button>
           </li>

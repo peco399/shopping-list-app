@@ -1081,6 +1081,7 @@ body {
   margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  white-space: nowrap;
 }
 
 .search-keyword {
@@ -1128,6 +1129,7 @@ body {
   border-radius: 6px;
   transition: all 0.3s ease;
   border: 1px dashed transparent;
+  white-space: nowrap;
 }
 
 .empty-create-link:hover {
@@ -1177,6 +1179,7 @@ body {
   .empty-create-link{
     font-size: 14px;
   }
+  
 }
 
 @media (max-width: 480px) {
@@ -1199,6 +1202,9 @@ body {
   .stat-item {
     margin-bottom: 6px;
   }
+ 
+  
+  
 }
 
 /* ===========================================
@@ -1960,7 +1966,7 @@ body {
   }
   
   .empty-message,.empty-create-link {
-    font-size: 14px;
+    font-size: 12px;
   }
   
   /* 保存ボタンの調整 */

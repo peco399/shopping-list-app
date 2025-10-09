@@ -3,7 +3,7 @@ import { useParams,Link } from 'react-router-dom'
 import ItemForm from '../components/ItemForm'
 import ItemList from '../components/ItemList'
 
-export default function ShoppingList({onSaveList, savedLists}) {
+export default function ShoppingList({onSaveList, savedLists,lang, t}) {// eslint-disable-line no-unused-vars
   const { dateId } = useParams()
 
   const [items, setItems] = useState([ ])
@@ -76,14 +76,14 @@ export default function ShoppingList({onSaveList, savedLists}) {
           <div className="memo-page-header">
             <div className="memo-page-title">
               <span className="page-icon">🛒</span>
-              <h2 className="page-heading">買い物リスト</h2>
+              <h2 className="page-heading">{t('shoppingListTitle')}</h2>
               <div className="shopping-date-badge" >
                 📅 {dateId}
               </div>
               <div className="back-to-home-container">
             <Link to="/" className="back-to-home-btn">
               <span className="back-icon">🏠</span>
-              <span className="back-text">ホームに戻る</span>
+              <span className="back-text">{t('backToHome')}</span>
             </Link>
           </div>
               
@@ -103,7 +103,7 @@ export default function ShoppingList({onSaveList, savedLists}) {
             >
               <span className="create-icon">{isSaved ? '✅' : '💾'}</span>
               <span className="create-text">
-                {isSaved ? 'リスト保存済み' : 'リストを保存'}
+                {isSaved ? t('listSaved') : t('saveList')}
               </span>
               
             </button>
@@ -112,10 +112,10 @@ export default function ShoppingList({onSaveList, savedLists}) {
           <div className="memo-search-container">
             <div className="memo-search-header">
               <span className="search-icon">➕</span>
-              <h3 className="search-title">新しいアイテムを追加</h3>
+              <h3 className="search-title">{t('addNewItem')}</h3>
             </div>
             <div className="search-title-underline"></div>
-            <ItemForm onAddItem={addItem} />
+            <ItemForm onAddItem={addItem} t={t} lang={lang} />
           </div>
 
           
@@ -125,7 +125,9 @@ export default function ShoppingList({onSaveList, savedLists}) {
             <ItemList 
               items={items} 
               onDeleteItem={deleteItem}
-              onToggleComplete={toggleComplete}  
+              onToggleComplete={toggleComplete}
+              t={t}
+              lang={lang}  
             />
           </div>
         </div>

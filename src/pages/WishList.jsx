@@ -7,9 +7,9 @@ export default function WishlistPage({
   wishlistItems,
   onAddWishlistItem,
   onDeleteWishlistItem,
-  onSaveWishlist,
   onMoveToShopping,
-  savedLists}) {
+  savedLists,
+  lang, t}) { // eslint-disable-line no-unused-vars
 
 const [isSaved, setIsSaved] = useState(false)
 
@@ -20,7 +20,7 @@ const [isSaved, setIsSaved] = useState(false)
       
   
     if (!savedLists || savedLists.length === 0) {
-      alert('買い物リストがありません。\n先にホーム画面で買い物リストを作成してください。')
+      alert(t('noShoppingLists'))
       return
     }
 
@@ -30,7 +30,8 @@ const [isSaved, setIsSaved] = useState(false)
       const success = onMoveToShopping(item, targetList.dateId)
       
       if (success) {
-        alert(`「${item.name}」を ${targetList.dateId} の買い物リストに移行しました！`)
+        alert(`「${item.name}」${t('movedToList')}`)
+
       }
       return
     }
@@ -43,12 +44,17 @@ const [isSaved, setIsSaved] = useState(false)
 
     // 選択肢のテキストを作成
     const listOptions = sortedLists.map((list, index) => 
-      `${index + 1}. ${list.dateId} (${list.items.length}個のアイテム)`
+    `${index + 1}. ${list.dateId})`
     ).join('\n')
-    
-    const choice = prompt(
-      `「${item.name}」をどの買い物リストに移行しますか？\n\n${listOptions}\n\n番号を入力してください（1-${sortedLists.length}）:`
-    )
+
+    const message = `
+「${item.name}」${t('selectList')}：
+${listOptions}
+${t('enterNumber')}（1-${sortedLists.length}）
+`
+
+const choice = prompt(message)
+
 
     // 4. キャンセルまたは無効な入力の場合
     if (choice === null || choice.trim() === '') {
@@ -58,7 +64,7 @@ const [isSaved, setIsSaved] = useState(false)
     const choiceIndex = parseInt(choice.trim()) - 1
 
     if (isNaN(choiceIndex) || choiceIndex < 0 || choiceIndex >= sortedLists.length) {
-      alert('無効な選択です。1から' + sortedLists.length + 'の番号を入力してください。')
+      alert(t('invalidSelection'))
       return
     }
 
@@ -67,7 +73,7 @@ const [isSaved, setIsSaved] = useState(false)
     const success = onMoveToShopping(item, selectedList.dateId)
     
     if (success) {
-      alert(`「${item.name}」を ${selectedList.dateId} の買い物リストに移行しました！`)
+      alert(`「${item.name}」${t('movedToList')}`)
     }
     
   }
@@ -76,14 +82,14 @@ const [isSaved, setIsSaved] = useState(false)
   
   const handleDeleteItem = (itemId) => {
     onDeleteWishlistItem(itemId)
-     onSaveWishlist()       // ← 削除と同時に保存
+     //onSaveWishlist()       // ← 削除と同時に保存
      setIsSaved(true)       // ← 保存済みに
   }
 
   const handleAddItem = (itemName) => {
     if (!itemName.trim()) return
     onAddWishlistItem(itemName)
-    onSaveWishlist()       // ← 追加と同時に保存
+    //onSaveWishlist()       // ← 追加と同時に保存
     setIsSaved(true)       // ← 保存済みに
   }
   
@@ -105,16 +111,16 @@ const [isSaved, setIsSaved] = useState(false)
         <div className="memo-page-header">
             <div className="memo-page-title">
               <span className="page-icon">⭐</span>
-              <h2 className="page-heading">ほしいものリスト</h2>
+              <h2 className="page-heading">{t('wishlistTitle')}</h2>
               <div className="wishlist-badge">
                 <span className="wishlist-count">{wishlistItems.length}</span>
-                <span className="wishlist-label">アイテム</span>
+                <span className="wishlist-label">{t('wishlistCount')}</span>
                 
           </div>
           <div className="back-to-home-container">
             <Link to="/" className="back-to-home-btn">
               <span className="back-icon">🏠</span>
-              <span className="back-text">ホームに戻る</span>
+              <span className="back-text">{t('backToHome')}</span>
             </Link>
           </div>
         </div>
@@ -126,7 +132,7 @@ const [isSaved, setIsSaved] = useState(false)
         className={`wishlist-save-button ${isSaved ? 'saved' : 'unsaved'}`}>
           
           <span className="create-icon">{isSaved ? '✅' : '⭐'}</span>
-              <span className="create-text">ほしいものリストを保存</span>
+              <span className="create-text">{t('saveWishlist')}</span>
               <div className="button-doodle">{isSaved ? '✓' : '→'}</div>
         </button>
       </div>
@@ -134,15 +140,15 @@ const [isSaved, setIsSaved] = useState(false)
       <div className="memo-search-container">
             <div className="memo-search-header">
               <span className="search-icon">✨</span>
-              <h3 className="search-title">ほしいアイテムを追加</h3>
+              <h3 className="search-title">{t('addWishItem')}</h3>
             </div>
             <div className="search-title-underline"></div>
-            <ItemForm onAddItem={handleAddItem} />
+            <ItemForm onAddItem={handleAddItem}  t={t} lang={lang} />
           </div>
           <div className="memo-lists-container">
             <div className="memo-lists-header">
               <span className="lists-icon">📝</span>
-              <h3 className="lists-title">ほしいものリストアイテム</h3>
+              <h3 className="lists-title">{t('wishlistItems')}</h3>
             </div>
             <div className="lists-title-underline"></div>
       
@@ -150,7 +156,9 @@ const [isSaved, setIsSaved] = useState(false)
       onDeleteItem={handleDeleteItem}
       onMoveToShopping={handlemoveToShoppingList}
       showCompleteButton={false}  
-      showMoveButton={true}     />
+      showMoveButton={true} 
+      t={t}
+      lang={lang}      />
       </div>
       </div>
       </div>
