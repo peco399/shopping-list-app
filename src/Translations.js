@@ -20,12 +20,12 @@ const translations = {
     listSaved: "List Saved",
     saveList: "Save List",
     addNewItem: "Add New Item",
-    itemList: "Shopping Items",
+    itemList: "Items",
     itemPlaceholder: "Item name",
     addButton: "Add",
     addHint: "Press Enter to add",
     noItemsYet: "No items added yet",
-    addItemSuggestion: "Add new items using the form above!",
+    //addItemSuggestion: "Add new items using the form above!",
     
     // Wishlist page
     wishlistTitle: "Wishlist",
@@ -77,12 +77,12 @@ const translations = {
     listSaved: "リスト保存済み",
     saveList: "リストを保存",
     addNewItem: "新しいアイテムを追加",
-    itemList: "買い物アイテム",
+    itemList: "アイテム",
     itemPlaceholder: "アイテム名",
     addButton: "追加",
     addHint: "Enter キーでも追加できます",
     noItemsYet: "まだアイテムが追加されていません。",
-    addItemSuggestion: "上のフォームから新しいアイテムを追加してみましょう！",
+   //addItemSuggestion: "上のフォームから新しいアイテムを追加してみましょう！",
     
     // Wishlist page
     wishlistTitle: "ほしいものリスト",

@@ -27,7 +27,7 @@ export default function ItemList({
             <span className="no-lists-icon">🛒</span>
             <p className="empty-message">{t('noItemsYet')}</p>
             <div className="empty-suggestion">
-              <span className="empty-create-link">{t('addItemSuggestion')}</span>
+            {/* <span className="empty-create-link">{t('addItemSuggestion')}</span> */}
             </div>
           </div>
         </div>
